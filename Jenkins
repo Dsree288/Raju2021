@@ -1,0 +1,19 @@
+node(){
+    stage("Checkout"){
+        echo"checkout"
+        checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Dsree288/java-tomcat-maven-docker.git']]]
+    }
+    stage("Maven build"){
+        echo"Maven build"
+        sh 'mvn package'
+    }
+    stage("Sonar"){
+        echo"Sonar"
+    }
+    stage("Docker build"){
+        echo"Docker build"
+    }
+    stage("Docker run"){
+        echo"Docker run"
+    }
+}
