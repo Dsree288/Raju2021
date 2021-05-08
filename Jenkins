@@ -1,11 +1,12 @@
 node(){
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')), [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false]])
     stage("Checkout"){
         echo"checkout"
-        checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Dsree288/java-tomcat-maven-docker.git']]]
+        // checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Dsree288/java-tomcat-maven-docker.git']]]
     }
     stage("Maven build"){
         echo"Maven build"
-        sh 'mvn package'
+        // sh 'mvn package'
     }
     stage("Sonar"){
         echo"Sonar"
